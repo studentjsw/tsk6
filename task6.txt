@@ -1,0 +1,90 @@
+
+1.Write a “person” class to hold all the details.
+
+
+function Person(FirstName, LastName, Age) {
+        this.firstName = FirstName || "unknown";
+        this.lastName = LastName || "unknown";
+        this.age = Age || 25;
+        this.getFullName = function () {
+            return this.firstName + " " + this.lastName;
+        }
+};
+
+var person1 = new Person("hema","priya",24);
+alert(person1.getFullName());
+
+var person2 = new Person("joy","veena");
+alert(person2.getFullName());
+
+
+ a) Write a constructor for the class Movie, which takes a String representing the title of the movie,  
+a String representing the studio, and a String representing the rating as its arguments, and sets the 
+ respective class properties to these values.
+ b) The constructor for the class Movie will set the class property rating to "PG" as default when no rating is provided
+ d) Write a piece of code that creates an instance of the class Movie with the title “Casino Royale”,
+ the studio “Eon Productions”, and the rating “PG­13”
+
+class movie {
+  constructor(title, studio, rating) {
+    this.title = title;
+    this.studio = studio;
+    this.rating = rating;
+  }
+
+  getpg(movie=[].rati) {
+    return "the rating is  " + this.rating;
+  }
+}
+
+class movie {
+    constructor(title, studio, rating){
+        this.title = title;
+        this.studio = studio;
+        this.rating = "PG";
+    }
+}
+const CasinoRoyale = new movie( "Casino Royal", "Eon Productions", "PG13");
+const casionRoyaleMovie = new Movie('Casino Royale', 'Eon Productions', 'PG13');
+const leo = new Movie('Leo', 'LCU', 'PG');
+const vikram = new Movie('Vikram', 'Vijay', 'PG');
+const avatar = new Movie('Avatar: The water way', 'EROS', 'PG13');
+const avengers = new Movie('The avengers: End Game', 'LCU', 'PG');
+ 
+const moviesArray = [casionRoyaleMovie, leo, vikram, avatar, avengers];
+ 
+console.log(casionRoyaleMovie.getPG(moviesArray, 'R'));
+console.log(casionRoyaleMovie.getPG(moviesArray, 'PG'));
+ 
+5.write a class to calculate the uber price.
+
+(function($){
+	var currentCur = 'MYR';
+	var tripsTable = $('#trips-table');
+	var fareColHeader = tripsTable.find('thead tr th:nth-child(4)');
+	var fareColHeaderSum = fareColHeader.find('.af-faresum');
+	if ( fareColHeaderSum.length === 0 ){
+		fareColHeaderSum = $('<span class="af-faresum">(<span class="af-faresumval">' + currentCur +'0.00</span>)</span>');
+	}
+	fareColHeader.append(fareColHeaderSum);
+	var fareCol = tripsTable.find('tbody tr td:nth-child(4)');
+	var convertCurrencyToNumber = function(value, currency){
+		if ( typeof value !== 'string' ){
+			return 0.00;
+		}
+		if ( typeof currency === 'undefined' || currency === '' ){
+			currency = 'MYR';
+		}
+		value = value.trim();
+		if ( value === currency + 'NaN' ){
+			return 0.00;
+		}
+		return parseFloat(value.replace(currency, '' ));
+	};
+	fareCol.each(function(item, i){
+		var elem = $(this);
+		var checkbox = elem.children('.af-checkwrapper');
+		if ( checkbox.length === 0 ){
+			checkbox = $('<div class="af-checkwrapper"><input type="checkbox" /></div>');
+			elem.append(checkbox);
+		}
